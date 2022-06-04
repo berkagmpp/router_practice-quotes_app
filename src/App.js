@@ -1,6 +1,6 @@
-import { Fragment } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 
+import Layout from "./components/layout/Layout";
 import MainNavigation from "./components/layout/MainNavigation";
 import AllQuotes from "./components/pages/AllQuotes";
 import QuoteDetail from "./components/pages/QuoteDetail";
@@ -8,8 +8,7 @@ import NewQuote from "./components/pages/NewQuote";
 
 function App() {
     return (
-        <Fragment>
-            <MainNavigation />
+        <Layout>
             <Switch>
                 <Route path="/" exact>
                     <Redirect to="/quotes" />
@@ -24,7 +23,7 @@ function App() {
                     <NewQuote />
                 </Route>
             </Switch>
-        </Fragment>
+        </Layout>
     );
 }
 
