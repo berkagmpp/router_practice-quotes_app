@@ -4,12 +4,23 @@ import { useHistory, useLocation } from 'react-router-dom';
 import QuoteItem from './QuoteItem';
 import classes from './QuoteList.module.css';
 
+const sortQuotes = (quotes, ascending) => {
+    return quotes.sort((quoteA, quoteB) => {
+        if (ascending) {
+            return quoteA.id > quoteB.id ? 1 : -1;
+        } else {
+            return quoteA.id < quoteB.id ? 1 : -1;
+        }
+    });
+};
+
 const QuoteList = (props) => {
     const history = useHistory();
     const location = useLocation();
-    
+
     const queryParams = new URLSearchParams(location.search); // loaction.search = '/quotes?sort=' + ' '
     const isSortingAscending = queryParams.get('sort') === 'asc';
+    const sortedQuotes = sortQuotes(props.quotes, isSortingAscending); // pass quotes and Boolean value of isSortingAscending to sortQuotes fn which is located outside of QuoteList
 
     const changeSortingHandler = () => {
         history.push('/quotes?sort=' + (isSortingAscending ? 'desc' : 'asc'));   // re-evaluated when press the sorting button because React-router changes history, and re-load the page we're currently on 
@@ -21,7 +32,7 @@ const QuoteList = (props) => {
                 <button onClick={changeSortingHandler}>Sorting {isSortingAscending ? 'Descending' : 'Ascending'}</button>
             </div>
             <ul className={classes.list}>
-                {props.quotes.map((quote) => (
+                {sortedQuotes.map((quote) => (
                     <QuoteItem
                         key={quote.id}
                         id={quote.id}
