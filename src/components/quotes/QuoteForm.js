@@ -19,19 +19,23 @@ const QuoteForm = (props) => {
         // optional: Could validate here
 
         props.onAddQuote({ author: enteredAuthor, text: enteredText });
-    }
+    };
 
     const formFocusedHandler = () => {
         setIsEntering(true);
-    }
+    };
+
+    const finishEnteringHandler = () => {
+        setIsEntering(false);
+    };
 
     return (
         <Fragment>
             <Prompt when={isEntering} message={(location) => 'Are you sure to live? All your entered data will be lost.'} />
             <Card>
                 <form className={classes.form} 
-                    onSubmit={submitFormHandler}
-                    onFocus={formFocusedHandler} >
+                      onSubmit={submitFormHandler}
+                      onFocus={formFocusedHandler} >
                     {props.isLoading && (
                         <div className={classes.loading}>
                             <LoadingSpinner />
@@ -47,7 +51,7 @@ const QuoteForm = (props) => {
                         <textarea id='text' rows='5' ref={textInputRef}></textarea>
                     </div>
                     <div className={classes.actions}>
-                        <button className='btn'>Add Quote</button>
+                        <button className='btn' onClick={finishEnteringHandler} >Add Quote</button>
                     </div>
                 </form>
             </Card>
