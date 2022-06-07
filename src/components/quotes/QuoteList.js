@@ -23,7 +23,12 @@ const QuoteList = (props) => {
     const sortedQuotes = sortQuotes(props.quotes, isSortingAscending); // pass quotes and Boolean value of isSortingAscending to sortQuotes fn which is located outside of QuoteList
 
     const changeSortingHandler = () => {
-        history.push('/quotes?sort=' + (isSortingAscending ? 'desc' : 'asc'));   // re-evaluated when press the sorting button because React-router changes history, and re-load the page we're currently on 
+        history.push({
+            pathname: location.pathname,
+            search: `?sort=${isSortingAscending ? 'desc' : 'asc'}`
+        }); // send push using obj is more readable then blow
+
+        // history.push(`${location.pathname}?sort=${isSortingAscending ? 'desc' : 'asc'}`);   // re-evaluated when press the sorting button because React-router changes history, and re-load the page we're currently on 
     };
 
     return (
