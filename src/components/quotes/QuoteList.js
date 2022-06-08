@@ -20,13 +20,13 @@ const QuoteList = (props) => {
 
     const queryParams = new URLSearchParams(location.search); // loaction.search = '/quotes?sort=' + ' '
     const isSortingAscending = queryParams.get('sort') === 'asc';
-    const sortedQuotes = sortQuotes(props.quotes, isSortingAscending); // pass quotes and Boolean value of isSortingAscending to sortQuotes fn which is located outside of QuoteList
+    const sortedQuotes = sortQuotes(props.quotes, isSortingAscending); // pass (quotes,  a Boolean value of isSortingAscending) to sortQuotes fn which is located outside of QuoteList, and store the result in soltedQuotes constance
 
     const changeSortingHandler = () => {
         history.push({
             pathname: location.pathname,
             search: `?sort=${isSortingAscending ? 'desc' : 'asc'}`
-        }); // send push using obj is more readable then blow
+        }); // send push using as an obj is more readable then blow
 
         // history.push(`${location.pathname}?sort=${isSortingAscending ? 'desc' : 'asc'}`);   // re-evaluated when press the sorting button because React-router changes history, and re-load the page we're currently on 
     };

@@ -13,7 +13,7 @@ const NewQuote = () => {
         if (status === 'completed') {
             history.push('/quotes');
         }
-    }, [status, history]);  // actually, history is not change
+    }, [status, history]);  // actually, history is not changed
 
     const addQuoteHandler = quoteData => {
         // console.log(quoteData);
@@ -21,7 +21,7 @@ const NewQuote = () => {
     };
 
     return (
-        <QuoteForm isLoading={status === 'pending'} onAddQuote={addQuoteHandler} /> // sending 'pending' status if staus is loading to QuoteForm
+        <QuoteForm isLoading={status === 'pending'} onAddQuote={addQuoteHandler} /> // sending 'pending' status if status is 'isLoading' to QuoteForm
     );
 };
 
