@@ -15,7 +15,7 @@ const Comments = () => {
     const params = useParams();
     const { quoteId } = params;     // etAllComments fn needs only quoteId, so choose quoteId only from params 
 
-    const { sendRequest, status, data: loadedComments } = useHttp(getAllComments, true);
+    const { sendRequest, status, data: loadedComments } = useHttp(getAllComments);
 
     useEffect(() => {
         sendRequest(quoteId);
@@ -29,7 +29,7 @@ const Comments = () => {
 
     let comments;
 
-    if (status === "pending") {
+    if (status === 'pending') {
         comments = (
             <div className='centered'>
                 <LoadingSpinner />
@@ -37,11 +37,11 @@ const Comments = () => {
         );
     }
 
-    if (status === "completed" && (loadedComments && loadedComments.length > 0)) {
-        comments = <CommentsList comments={loadedComments} />
+    if (status === 'completed' && (loadedComments && loadedComments.length > 0)) {
+        comments = <CommentsList comments={loadedComments} />;
     }
 
-    if (status === "completed" && (!loadedComments || loadedComments.length === 0)) {
+    if (status === 'completed' && (!loadedComments || loadedComments.length === 0)) {
         comments = <p className='centered'>No comments were added yet!</p>;
     }
 

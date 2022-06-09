@@ -25,8 +25,8 @@ const NewCommentForm = (props) => {
         // optional: Could validate here
 
         // send comment to server
-        const enteredComment = commentTextRef.current.value;
-        sendRequest( {enteredComment}, props.quoteId );     // de-structured quotId is also okey from useParams() intead of props.quoteId
+        const enteredText = commentTextRef.current.value;
+        sendRequest({ commentData: { enteredText }, quoteId: props.quoteId });     // de-structured quotId is also okey from useParams() intead of props.quoteId
     };
 
     return (
