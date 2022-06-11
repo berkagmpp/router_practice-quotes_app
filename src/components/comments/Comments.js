@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 
 import useHttp from '../../hooks/use-http';
@@ -25,7 +25,12 @@ const Comments = () => {
         setIsAddingComment(true);
     };
 
-    const addedCommentHandler = () => {};
+    // addedCommentHandler fn is passed to NewCommentForm component, and use as a dependency of useEffect, 
+    // so need useCallback with dependancies.
+    // if we dosen't use useCallback here, NewCommentForm is re-created when Comments component re-rendered, may create the infinite loop.
+    const addedCommentHandler = useCallback(() => {
+        sendRequest(quoteId);
+    }, [sendRequest, quoteId]);
 
     let comments;
 
