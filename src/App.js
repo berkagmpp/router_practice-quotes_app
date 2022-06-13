@@ -4,11 +4,13 @@ import { Route, Switch, Redirect } from "react-router-dom";
 
 import Layout from "./components/layout/Layout";
 import AllQuotes from "./components/pages/AllQuotes";
-import QuoteDetail from "./components/pages/QuoteDetail";
-import NotFound from "./components/pages/NotFound";
 import LoadingSpinner from "./components/UI/LoadingSpinner";
 
-const NewQuote = React.lazy(() => import('./components/pages/NewQuote'));   // lazy loading
+// lazy loading
+const NewQuote = React.lazy(() => import('./components/pages/NewQuote'));
+const QuoteDetail = React.lazy(() => import('./components/pages/QuoteDetail'));
+const NotFound = React.lazy(() => import('./components/pages/NotFound'));
+
 
 function App() {
     return (
